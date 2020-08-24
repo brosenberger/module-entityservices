@@ -50,6 +50,7 @@ class SchemaBuilder
                 return;
             }
         );
+        return $eavTable;
     }
 
     public function buildEavAttributeTable($baseTable, TableElement $table, $valueColumnMethod, $options = [])

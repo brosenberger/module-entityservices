@@ -61,6 +61,26 @@ class ForeignKeyElement extends AbstractElement
         $this->action(\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE);
         return $this;
     }
+    public function actionSetNull()
+    {
+        $this->action(\Magento\Framework\DB\Ddl\Table::ACTION_SET_NULL);
+        return $this;
+    }
+    public function actionNoAction()
+    {
+        $this->action(\Magento\Framework\DB\Ddl\Table::ACTION_NO_ACTION);
+        return $this;
+    }
+    public function actionRestrict()
+    {
+        $this->action(\Magento\Framework\DB\Ddl\Table::ACTION_RESTRICT);
+        return $this;
+    }
+    public function actionSetDefault()
+    {
+        $this->action(\Magento\Framework\DB\Ddl\Table::ACTION_SET_DEFAULT);
+        return $this;
+    }
 
     /**
      * @return TableElement
