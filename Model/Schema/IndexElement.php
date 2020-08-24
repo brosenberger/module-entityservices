@@ -40,6 +40,9 @@ class IndexElement extends AbstractElement
         $this->tableName = $tableName;
     }
 
+    /**
+     * @return TableElement
+     */
     public function build()
     {
         $indexName = $this->setup->getIdxName(
