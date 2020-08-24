@@ -10,7 +10,7 @@ namespace BroCode\EntityServices\Model\Schema;
 
 class ColumnElement extends AbstractElement
 {
-    protected $baseSettings = [];
+    protected $columnOptions = [];
     protected $columnSize = null;
     protected $columnName;
     protected $columnType;
@@ -39,25 +39,25 @@ class ColumnElement extends AbstractElement
 
     public function asPrimaryKey($primary = true)
     {
-        $this->baseSettings['primary'] = $primary;
+        $this->columnOptions['primary'] = $primary;
         return $this;
     }
 
     public function asIdentiy($identity = true)
     {
-        $this->baseSettings['identity'] = $identity;
+        $this->columnOptions['identity'] = $identity;
         return $this;
     }
 
     public function asUnsigned($unsigned = true)
     {
-        $this->baseSettings['unsigned'] = $unsigned;
+        $this->columnOptions['unsigned'] = $unsigned;
         return $this;
     }
 
     public function asNullable($nullable = true)
     {
-        $this->baseSettings['nullable'] = $nullable;
+        $this->columnOptions['nullable'] = $nullable;
         return $this;
     }
 
@@ -69,23 +69,33 @@ class ColumnElement extends AbstractElement
 
     public function withDefault($value)
     {
-        $this->baseSettings['default'] = $value;
+        $this->columnOptions['default'] = $value;
         return $this;
     }
 
-    protected function getColumnData() {
+    public function withOptions($options)
+    {
+        $this->columnOptions = array_merge($this->columnOptions, $options);
+        return $this;
+    }
+
+    protected function getColumnData()
+    {
         return [
             $this->columnName,
             $this->columnType,
             $this->columnSize,
-            $this->baseSettings,
+            $this->columnOptions,
             $this->columnComment
         ];
     }
 
+    /**
+     * @return TableElement
+     */
     public function build()
     {
         // todo validate data and register with table
-        $this->parent->registerColumn($this->getColumnData());
+        return $this->parent->registerColumn($this->getColumnData());
     }
 }

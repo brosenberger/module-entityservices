@@ -8,8 +8,7 @@
 
 namespace BroCode\EntityServices\Model\Schema;
 
-
-class IndexElement extends  AbstractElement
+class IndexElement extends AbstractElement
 {
     /**
      * @var array
@@ -46,12 +45,12 @@ class IndexElement extends  AbstractElement
         $indexName = $this->setup->getIdxName(
             $this->tableName,
             $this->columns,
-            isset($this->options['type'])? $this->options['type'] : ''
+            isset($this->options['type']) ? $this->options['type'] : ''
         );
-        return $this->parent->registerIndex(
+        return $this->parent->registerIndex([
             $indexName,
             $this->columns,
             $this->options
-        );
+        ]);
     }
 }

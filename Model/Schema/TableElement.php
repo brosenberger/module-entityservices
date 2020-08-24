@@ -16,11 +16,15 @@ use BroCode\EntityServices\Model\SchemaBuilder;
  */
 class TableElement extends AbstractElement
 {
+    const CALLBACK_AFTERTABLECREATE = 'after_table_create';
+
     protected $tableName;
     protected $tableComment;
 
     protected $columns = [];
     protected $index = [];
+    protected $foreignKey = [];
+    protected $callbacks = [];
 
     /**
      * TableElement constructor.
@@ -148,6 +152,24 @@ class TableElement extends AbstractElement
         return $this;
     }
 
+    // -------- foreign keys
+
+    public function withForeignKey($fromColumn, $toTable, $toColumn)
+    {
+        return new ForeignKeyElement($this, $this->setup, $this->tableName, $fromColumn, $toTable, $toColumn);
+    }
+
+    public function registerForeignKey(array $foreignKeyData) {
+        $this->foreignKey[] = $foreignKeyData;
+        return $this;
+    }
+
+    public function registerCallback($position, callable $callback)
+    {
+        $this->callbacks[$position][] = $callback;
+        return $this;
+    }
+
     public function build()
     {
         $table = $this->setup->getConnection()
@@ -164,6 +186,9 @@ class TableElement extends AbstractElement
         }
 
         // add foreign keys
+        foreach ($this->foreignKey as $foreignKeyData) {
+            $table->addForeignKey(...$foreignKeyData);
+        }
 
         // add comment
         $table->setComment($this->tableComment);
@@ -171,7 +196,17 @@ class TableElement extends AbstractElement
         // persist in db
         $this->setup->getConnection()->createTable($table);
 
-        // TODO  build table with configurations
+        $this->callCallbacks(self::CALLBACK_AFTERTABLECREATE);
+
         return $this->parent;
+    }
+
+    protected function callCallbacks($position)
+    {
+        if (isset($this->callbacks[$position]) && count($this->callbacks[$position]) > 0) {
+            foreach ($this->callbacks[$position] as $callback) {
+                $callback();
+            }
+        }
     }
 }
