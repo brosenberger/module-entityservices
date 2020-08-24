@@ -18,7 +18,7 @@ class ColumnElement extends AbstractElement
 
     /**
      * ColumnElement constructor.
-     * @param $parent
+     * @param AbstractElement $parent
      * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
      * @param $columnName
      * @param $columnType

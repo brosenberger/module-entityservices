@@ -8,13 +8,14 @@
 
 namespace BroCode\EntityServices\Model;
 
+use BroCode\EntityServices\Api\ElementInterface;
 use BroCode\EntityServices\Model\Schema\TableElement;
 
 /**
  * Class SchemaBuilder
  * @package BroCode\EntityServices\Model
  */
-class SchemaBuilder
+class SchemaBuilder implements ElementInterface
 {
     /**
      * @var \Magento\Framework\Setup\SchemaSetupInterface
@@ -73,5 +74,10 @@ class SchemaBuilder
             ->withForeignKey('store_id', 'store', 'store_id')->actionCascade()->build();
 
         return $table->build();
+    }
+
+    public function build()
+    {
+        // nothing to do
     }
 }
