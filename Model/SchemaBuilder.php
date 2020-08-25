@@ -38,7 +38,8 @@ class SchemaBuilder implements ElementInterface
 
     public function buildEavEntity($tableName, $comment = '')
     {
-        $eavTable = $this->withTable($tableName, $comment);
+        $eavTable = $this->withTable($tableName, $comment)
+            ->withIntColumn('entity_id')->asIdentiy()->asNullable(false)->asPrimaryKey()->asUnsigned()->build();
         $eavTable->registerCallback(
             TableElement::CALLBACK_AFTERTABLECREATE,
             function () use ($tableName) {
