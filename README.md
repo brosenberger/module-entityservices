@@ -7,6 +7,7 @@
 ###DONE:
 * create tables with various columns, indizes, foreign keys
 * create a set of tables for a EAV entity
+* update tables (add/modify columns, drop foreign keys or indizes)
 
 ###Example:
 

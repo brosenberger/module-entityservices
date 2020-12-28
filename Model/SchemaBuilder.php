@@ -10,6 +10,7 @@ namespace BroCode\EntityServices\Model;
 
 use BroCode\EntityServices\Api\ElementInterface;
 use BroCode\EntityServices\Model\Schema\TableElement;
+use BroCode\EntityServices\Model\Schema\UpdateTableElement;
 
 /**
  * Class SchemaBuilder
@@ -31,9 +32,30 @@ class SchemaBuilder implements ElementInterface
         $this->setup = $setup;
     }
 
+    /**
+     * @param string $tableName
+     * @param string $comment
+     * @return UpdateTableElement
+     */
+    public function updateTable($tableName) {
+        if (!$this->setup->tableExists($this->setup->getTable($tableName))) {
+            throw new \RuntimeException('Update table '. $this->setup->getTable($tableName) . ' does not exist!');
+        }
+        return $this->withTable($tableName);
+    }
+
+    /**
+     * @param string $tableName
+     * @param string $comment
+     * @return TableElement|UpdateTableElement
+     */
     public function withTable($tableName, $comment = '')
     {
-        return new TableElement($this, $this->setup, $tableName, $comment);
+        if (!$this->setup->tableExists($this->setup->getTable($tableName))) {
+            return new TableElement($this, $this->setup, $tableName, $comment);
+        } else {
+            return new UpdateTableElement($this, $this->setup, $tableName, $comment);
+        }
     }
 
     public function buildEavEntity($tableName, $comment = '')

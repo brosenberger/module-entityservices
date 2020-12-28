@@ -130,11 +130,21 @@ class TableElement extends AbstractElement
 
     // ------------- index methods
 
+    /**
+     * @param array|string $columns
+     * @param array $options
+     * @return IndexElement
+     */
     public function withIndex($columns, $options = [])
     {
-        return new IndexElement($this, $this->setup, $this->tableName, $columns, $options);
+        return new IndexElement($this, $this->setup, $this->tableName, is_array($columns)?$columns:[$columns], $options);
     }
 
+    /**
+     * @param array|string $columns
+     * @param array $options
+     * @return IndexElement
+     */
     public function withUniqueIndex($columns, $options = [])
     {
         return $this->withIndex(
@@ -172,33 +182,83 @@ class TableElement extends AbstractElement
 
     public function build()
     {
-        $table = $this->setup->getConnection()
-            ->newTable($this->setup->getTable($this->tableName));
+        $table = $this->createTable();
 
-        // add columns
-        foreach ($this->columns as $columData) {
-            $table->addColumn(...$columData);
-        }
+        $this->processColumns($table);
+        $this->processIndizes($table);
+        $this->processForeignKeys($table);
+        $this->processAdditionals($table);
 
-        // add indizes
-        foreach ($this->index as $indexData) {
-            $table->addIndex(...$indexData);
-        }
-
-        // add foreign keys
-        foreach ($this->foreignKey as $foreignKeyData) {
-            $table->addForeignKey(...$foreignKeyData);
-        }
-
-        // add comment
-        $table->setComment($this->tableComment);
-
-        // persist in db
-        $this->setup->getConnection()->createTable($table);
+        $this->persistTable($table);
 
         $this->callCallbacks(self::CALLBACK_AFTERTABLECREATE);
 
         return $this->parent;
+    }
+
+    /**
+     * @return \Magento\Framework\DB\Ddl\Table
+     */
+    protected function createTable()
+    {
+        return $this->setup->getConnection()->newTable($this->setup->getTable($this->tableName));
+    }
+
+    /**
+     * @param \Magento\Framework\DB\Ddl\Table|null $table
+     */
+    protected function processColumns($table = null) {
+        if ($table === null) {
+            return;
+        }
+        foreach ($this->columns as $columData) {
+            $table->addColumn(...$columData);
+        }
+    }
+
+    /**
+     * @param \Magento\Framework\DB\Ddl\Table|null $table
+     */
+    protected function processIndizes($table = null) {
+        if ($table === null) {
+            return;
+        }
+        foreach ($this->index as $indexData) {
+            $table->addIndex(...$indexData);
+        }
+    }
+
+    /**
+     * @param \Magento\Framework\DB\Ddl\Table|null $table
+     */
+    protected function processForeignKeys($table = null) {
+        if ($table === null) {
+            return;
+        }
+        foreach ($this->foreignKey as $foreignKeyData) {
+            $table->addForeignKey(...$foreignKeyData);
+        }
+    }
+
+    /**
+     * @param \Magento\Framework\DB\Ddl\Table|null $table
+     */
+    protected function processAdditionals($table = null) {
+        if ($table === null) {
+            return;
+        }
+        $table->setComment($this->tableComment);
+    }
+
+    /**
+     * @param \Magento\Framework\DB\Ddl\Table|null $table
+     * @throws \Zend_Db_Exception
+     */
+    protected function persistTable($table = null) {
+        if ($table === null) {
+            return;
+        }
+        $this->setup->getConnection()->createTable($table);
     }
 
     protected function callCallbacks($position)
