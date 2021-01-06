@@ -66,11 +66,27 @@ class SchemaBuilder implements ElementInterface
             TableElement::CALLBACK_AFTERTABLECREATE,
             function () use ($tableName) {
                 // add attribute tables
-                $this->buildEavAttributeTable($tableName, $this->withTable($tableName . '_datetime'), 'withDateTimeColumn')
-                    ->buildEavAttributeTable($tableName, $this->withTable($tableName . '_decimal'), 'withDecimalColumn')
-                    ->buildEavAttributeTable($tableName, $this->withTable($tableName . '_int'), 'withIntColumn')
-                    ->buildEavAttributeTable($tableName, $this->withTable($tableName . '_text'), 'withTextColumn')
-                    ->buildEavAttributeTable($tableName, $this->withTable($tableName . '_varchar'), 'withVarcharColumn');
+                $this->buildEavAttributeTable(
+                    $tableName,
+                    $this->withTable($tableName . '_datetime'),
+                    'withDateTimeColumn'
+                )->buildEavAttributeTable(
+                    $tableName,
+                    $this->withTable($tableName . '_decimal'),
+                    'withDecimalColumn'
+                )->buildEavAttributeTable(
+                    $tableName,
+                    $this->withTable($tableName . '_int'),
+                    'withIntColumn'
+                )->buildEavAttributeTable(
+                    $tableName,
+                    $this->withTable($tableName . '_text'),
+                    'withTextColumn'
+                )->buildEavAttributeTable(
+                    $tableName,
+                    $this->withTable($tableName . '_varchar'),
+                    'withVarcharColumn'
+                );
                 return;
             }
         );

@@ -136,7 +136,13 @@ class TableElement extends AbstractElement
      */
     public function withIndex($columns, $options = [])
     {
-        return new IndexElement($this, $this->setup, $this->tableName, is_array($columns)?$columns:[$columns], $options);
+        return new IndexElement(
+            $this,
+            $this->setup,
+            $this->tableName,
+            is_array($columns) ? $columns : [$columns],
+            $options
+        );
     }
 
     /**
@@ -168,7 +174,8 @@ class TableElement extends AbstractElement
         return new ForeignKeyElement($this, $this->setup, $this->tableName, $fromColumn, $toTable, $toColumn);
     }
 
-    public function registerForeignKey(array $foreignKeyData) {
+    public function registerForeignKey(array $foreignKeyData)
+    {
         $this->foreignKey[] = $foreignKeyData;
         return $this;
     }
@@ -206,7 +213,8 @@ class TableElement extends AbstractElement
     /**
      * @param \Magento\Framework\DB\Ddl\Table|null $table
      */
-    protected function processColumns($table = null) {
+    protected function processColumns($table = null)
+    {
         if ($table === null) {
             return;
         }
@@ -218,7 +226,8 @@ class TableElement extends AbstractElement
     /**
      * @param \Magento\Framework\DB\Ddl\Table|null $table
      */
-    protected function processIndizes($table = null) {
+    protected function processIndizes($table = null)
+    {
         if ($table === null) {
             return;
         }
@@ -230,7 +239,8 @@ class TableElement extends AbstractElement
     /**
      * @param \Magento\Framework\DB\Ddl\Table|null $table
      */
-    protected function processForeignKeys($table = null) {
+    protected function processForeignKeys($table = null)
+    {
         if ($table === null) {
             return;
         }
@@ -242,7 +252,8 @@ class TableElement extends AbstractElement
     /**
      * @param \Magento\Framework\DB\Ddl\Table|null $table
      */
-    protected function processAdditionals($table = null) {
+    protected function processAdditionals($table = null)
+    {
         if ($table === null) {
             return;
         }
@@ -253,7 +264,8 @@ class TableElement extends AbstractElement
      * @param \Magento\Framework\DB\Ddl\Table|null $table
      * @throws \Zend_Db_Exception
      */
-    protected function persistTable($table = null) {
+    protected function persistTable($table = null)
+    {
         if ($table === null) {
             return;
         }
