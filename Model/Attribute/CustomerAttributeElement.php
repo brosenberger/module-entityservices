@@ -16,8 +16,6 @@ use Magento\Eav\Api\AttributeRepositoryInterface;
  * Class CustomerAttributeElement
  *
  * additional methods for customer specific attributes (like formhandling)
- *
- * @package BroCode\EntityServices\Model\Attribute
  */
 class CustomerAttributeElement extends AttributeElement
 {

@@ -8,13 +8,10 @@
 
 namespace BroCode\EntityServices\Model\Attribute;
 
-
 use BroCode\EntityServices\Api\ElementInterface;
-use BroCode\EntityServices\Model\AttributeBuilder;
 
 /**
  * Class AttributeElement
- * @package BroCode\EntityServices\Model\Attribute
  */
 class AttributeElement implements ElementInterface
 {
@@ -58,11 +55,13 @@ class AttributeElement implements ElementInterface
         $this->eavSetup = $eavSetup;
     }
 
-    public function setEntityTypeId($entityTypeId) {
+    public function setEntityTypeId($entityTypeId)
+    {
         $this->entityTypeId = $entityTypeId;
     }
 
-    public function withAttribute($attribute, $value) {
+    public function withAttribute($attribute, $value)
+    {
         $this->attr[$attribute] = $value;
         return $this;
     }
@@ -71,7 +70,8 @@ class AttributeElement implements ElementInterface
      * @param string $type
      * @return $this
      */
-    public function withType($type) {
+    public function withType($type)
+    {
         return $this->withAttribute('type', $type);
     }
 
@@ -79,19 +79,23 @@ class AttributeElement implements ElementInterface
      * @param string $label
      * @return $this
      */
-    public function withLabel($label) {
+    public function withLabel($label)
+    {
         return $this->withAttribute('label', $label);
     }
 
-    public function withDefault($default) {
+    public function withDefault($default)
+    {
         return $this->withAttribute('default', $default);
     }
 
-    public function withWysiwygEnabled($enabled) {
+    public function withWysiwygEnabled($enabled)
+    {
         return $this->withAttribute('wysiwyg_enabled', $enabled == true);
     }
 
-    public function withIsHtmlAllowedOnFront($enabled) {
+    public function withIsHtmlAllowedOnFront($enabled)
+    {
         return $this->withAttribute('is_html_allowed_on_front', $enabled == true);
     }
 
@@ -99,7 +103,8 @@ class AttributeElement implements ElementInterface
      * @param bool $required
      * @return $this
      */
-    public function asRequired($required) {
+    public function asRequired($required)
+    {
         return $this->withAttribute('required', $required == true);
     }
 
@@ -107,30 +112,35 @@ class AttributeElement implements ElementInterface
      * @param bool $visible
      * @return $this
      */
-    public function asVisible($visible) {
+    public function asVisible($visible)
+    {
         return $this->withAttribute('visible', $visible == true);
     }
 
-    public function withPosition($position) {
+    public function withPosition($position)
+    {
         return $this->withAttribute('position', $position);
     }
 
-    public function withScope($scope) {
+    public function withScope($scope)
+    {
         return $this->withAttribute('global', $scope);
     }
 
-    public function withStoreScope() {
+    public function withStoreScope()
+    {
         return $this->withScope(\Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE);
     }
 
-    public function withWebsiteScope() {
+    public function withWebsiteScope()
+    {
         return $this->withScope(\Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_WEBSITE);
     }
 
-    public function withGlobalScope() {
+    public function withGlobalScope()
+    {
         return $this->withScope(\Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL);
     }
-
 
     public function build()
     {
@@ -138,8 +148,8 @@ class AttributeElement implements ElementInterface
         $this->createOrUpdateAttribute(
             $this->entityTypeId,
             $this->code,
-            $this->attr)
-        ;
+            $this->attr
+        );
         $this->addToAttributeSet(
             $this->entityTypeId,
             $this->code,
@@ -152,11 +162,13 @@ class AttributeElement implements ElementInterface
         return $this->parent;
     }
 
-    protected function createOrUpdateAttribute($entityTypeId, $attributeCode, $attributeData) {
+    protected function createOrUpdateAttribute($entityTypeId, $attributeCode, $attributeData)
+    {
         $this->eavSetup->addAttribute($entityTypeId, $attributeCode, $attributeData);
     }
 
-    protected function addToAttributeSet($entityTypeId, $attributeCode, $attrSetId, $attrGroupId, $sortOrder) {
+    protected function addToAttributeSet($entityTypeId, $attributeCode, $attrSetId, $attrGroupId, $sortOrder)
+    {
         $this->eavSetup->addAttributeToSet(
             $entityTypeId,
             $attrSetId,
@@ -166,7 +178,7 @@ class AttributeElement implements ElementInterface
         );
     }
 
-    protected function additionalActions() {
-
+    protected function additionalActions()
+    {
     }
 }

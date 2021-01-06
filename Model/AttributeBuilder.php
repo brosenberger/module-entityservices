@@ -10,6 +10,7 @@ namespace BroCode\EntityServices\Model;
 
 use BroCode\EntityServices\Api\ElementInterface;
 use BroCode\EntityServices\Model\Attribute\AttributeElement;
+use BroCode\EntityServices\Model\Attribute\CustomerAddressAttributeElement;
 use BroCode\EntityServices\Model\Attribute\CustomerAttributeElement;
 use BroCode\EntityServices\Model\Attribute\ProductAttributeElement;
 use Magento\Catalog\Model\Category;
@@ -91,7 +92,7 @@ class AttributeBuilder implements ElementInterface
 
     public function withCategoryAttribute($attributeCode)
     {
-        return new AttributeElement($this->eavSetup, $this,Category::ENTITY, $attributeCode);
+        return new AttributeElement($this->eavSetup, $this, Category::ENTITY, $attributeCode);
     }
 
     public function withGenericAttribute($entityTypeId, $attributeCode)

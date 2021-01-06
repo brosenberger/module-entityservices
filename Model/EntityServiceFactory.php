@@ -8,12 +8,37 @@
 
 namespace BroCode\EntityServices\Model;
 
+use Magento\Customer\Model\ResourceModel\Attribute;
+use Magento\Eav\Api\AttributeRepositoryInterface;
+
 /**
  * Class ServiceFactory
  * @package BroCode\EntityServices\Model
  */
 class EntityServiceFactory
 {
+    /**
+     * @var Attribute
+     */
+    private Attribute $attributeResourceModel;
+    /**
+     * @var AttributeRepositoryInterface
+     */
+    private AttributeRepositoryInterface $attributeRepository;
+
+    /**
+     * EntityServiceFactory constructor.
+     * @param Attribute $attributeResourceModel
+     * @param AttributeRepositoryInterface $attributeRepository
+     */
+    public function __construct(
+        Attribute $attributeResourceModel,
+        AttributeRepositoryInterface $attributeRepository
+    ) {
+        $this->attributeResourceModel = $attributeResourceModel;
+        $this->attributeRepository = $attributeRepository;
+    }
+
     /**
      * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
      * @return SchemaBuilder
@@ -23,8 +48,12 @@ class EntityServiceFactory
         return new SchemaBuilder($setup);
     }
 
+    /**
+     * @param \Magento\Eav\Setup\EavSetup $eavSetup
+     * @return AttributeBuilder
+     */
     public function createProductAttributeBuilder(\Magento\Eav\Setup\EavSetup $eavSetup)
     {
-        return new AttributeBuilder($eavSetup);
+        return new AttributeBuilder($eavSetup, $this->attributeResourceModel, $this->attributeRepository);
     }
 }

@@ -14,7 +14,6 @@ use Magento\Eav\Api\AttributeRepositoryInterface;
 
 /**
  * Class CustomerAttributeElement
- * @package BroCode\EntityServices\Model\Attribute
  */
 class CustomerAddressAttributeElement extends CustomerAttributeElement
 {

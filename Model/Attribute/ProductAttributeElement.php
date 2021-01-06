@@ -12,7 +12,6 @@ use BroCode\EntityServices\Api\ElementInterface;
 
 /**
  * Class ProductAttributeElement
- * @package BroCode\EntityServices\Model\Attribute
  */
 class ProductAttributeElement extends AttributeElement
 {
@@ -23,27 +22,33 @@ class ProductAttributeElement extends AttributeElement
         parent::__construct($eavSetup, $parent, \Magento\Catalog\Model\Product::ENTITY, $code);
     }
 
-    public function asSearchable($searchable) {
+    public function asSearchable($searchable)
+    {
         return $this->withAttribute('searchable', $searchable == true);
     }
 
-    public function asFilterable($filterable) {
+    public function asFilterable($filterable)
+    {
         return $this->withAttribute('filterable', $filterable == true);
     }
 
-    public function asComparable($comparable) {
+    public function asComparable($comparable)
+    {
         return $this->withAttribute('comparable', $comparable == true);
     }
 
-    public function asVisibleOnFron($visible) {
+    public function asVisibleOnFron($visible)
+    {
         return $this->withAttribute('visible_on_fron', $visible == true);
     }
 
-    public function asUsedInProductListing($usedInProductListing) {
+    public function asUsedInProductListing($usedInProductListing)
+    {
         return $this->withAttribute('used_in_prodict_listing', $usedInProductListing == true);
     }
 
-    public function asUnique($unique) {
+    public function asUnique($unique)
+    {
         return $this->withAttribute('unique', $unique == true);
     }
 
@@ -51,11 +56,13 @@ class ProductAttributeElement extends AttributeElement
      * @param string|array $applyTo
      * @return ProductAttributeElement
      */
-    public function withApplyTo($applyTo) {
-        return $this->withAttribute('apply_to', implode(',', is_array($applyTo)?$applyTo:[$applyTo]));
+    public function withApplyTo($applyTo)
+    {
+        return $this->withAttribute('apply_to', implode(',', is_array($applyTo) ? $applyTo : [$applyTo]));
     }
 
-    public function withApplyToAll() {
+    public function withApplyToAll()
+    {
         return $this->withApplyTo(self::ALLPRODUCTTYPES);
     }
 }
