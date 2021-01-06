@@ -9,8 +9,7 @@
 namespace BroCode\EntityServices\Model\Schema;
 
 /**
- * Class ForeignKeyElement
- * @package BroCode\EntityServices\Model\Schema
+ * Class ForeignKeyElement .
  */
 class ForeignKeyElement extends AbstractElement
 {
@@ -27,8 +26,14 @@ class ForeignKeyElement extends AbstractElement
      * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
      * @param $tableName
      */
-    public function __construct($parent, \Magento\Framework\Setup\SchemaSetupInterface $setup, $tableName, $fromColumn, $toTable, $toColumn)
-    {
+    public function __construct(
+        $parent,
+        \Magento\Framework\Setup\SchemaSetupInterface $setup,
+        $tableName,
+        $fromColumn,
+        $toTable,
+        $toColumn
+    ) {
         parent::__construct($parent, $setup);
         $this->tableName = $tableName;
         $this->toTable = $toTable;

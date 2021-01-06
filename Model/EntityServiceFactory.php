@@ -20,11 +20,11 @@ class EntityServiceFactory
     /**
      * @var Attribute
      */
-    private Attribute $attributeResourceModel;
+    private $attributeResourceModel;
     /**
      * @var AttributeRepositoryInterface
      */
-    private AttributeRepositoryInterface $attributeRepository;
+    private $attributeRepository;
 
     /**
      * EntityServiceFactory constructor.

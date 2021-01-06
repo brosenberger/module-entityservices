@@ -11,8 +11,7 @@ namespace BroCode\EntityServices\Model\Schema;
 use BroCode\EntityServices\Model\SchemaBuilder;
 
 /**
- * Class TableElement
- * @package BroCode\EntityServices\Model\Schema
+ * Class TableElement .
  */
 class TableElement extends AbstractElement
 {

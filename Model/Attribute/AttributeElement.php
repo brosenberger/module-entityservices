@@ -180,5 +180,6 @@ class AttributeElement implements ElementInterface
 
     protected function additionalActions()
     {
+        // nothing to do in here, only subs if they want to
     }
 }

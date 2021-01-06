@@ -103,5 +103,6 @@ class SchemaBuilder implements ElementInterface
     public function build()
     {
         // nothing to do
+        return $this;
     }
 }

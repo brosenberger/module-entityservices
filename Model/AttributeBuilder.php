@@ -19,7 +19,6 @@ use Magento\Eav\Api\AttributeRepositoryInterface;
 
 /**
  * Class AttributeBuilder
- * @package BroCode\EntityServices\Model\Attribute
  */
 class AttributeBuilder implements ElementInterface
 {

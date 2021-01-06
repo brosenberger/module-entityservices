@@ -10,7 +10,6 @@ namespace BroCode\EntityServices\Api;
 
 /**
  * Interface ElementInterface
- * @package BroCode\EntityServices\Api
  */
 interface ElementInterface
 {
