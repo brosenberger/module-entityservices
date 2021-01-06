@@ -1,7 +1,6 @@
 <?php
 /**
  * @author      Benjamin Rosenberger <rosenberger@e-conomix.at>
- * @package BroCode\EntityServices\Model\Schema
  * @copyright Copyright (c) 2020 E-CONOMIX GmbH (https://www.e-conomix.at)
  * @created 28.12.2020
  */
@@ -12,19 +11,19 @@ namespace BroCode\EntityServices\Model\Schema;
  * Class UpdateTableElement
  *
  * Currently only add column, modify column is supported
- *
- * @package BroCode\EntityServices\Model\Schema
  */
 class UpdateTableElement extends TableElement
 {
     protected $dropFk = [];
     protected $dropIndex = [];
 
-    public function dropForeignKey($fk) {
+    public function dropForeignKey($fk)
+    {
         $this->dropFk[] = $fk;
         return $this;
     }
-    public function dropIndex($index) {
+    public function dropIndex($index)
+    {
         $this->dropIndex[] = $index;
         return $this;
     }
@@ -61,7 +60,8 @@ class UpdateTableElement extends TableElement
         }
     }
 
-    protected function prepareColumnData($tableName, $column) {
+    protected function prepareColumnData($tableName, $column)
+    {
         list($columnName, $columnType, $columnSize, $columnOptions, $columnComment) = $column;
         return [
                 $tableName,

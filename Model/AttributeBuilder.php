@@ -1,7 +1,6 @@
 <?php
 /**
  * @author      Benjamin Rosenberger <rosenberger@e-conomix.at>
- * @package BroCode\EntityServices\Model\Attribute
  * @copyright Copyright (c) 2021 E-CONOMIX GmbH (https://www.e-conomix.at)
  * @created 04.01.2021
  */
@@ -19,6 +18,7 @@ use Magento\Eav\Api\AttributeRepositoryInterface;
 
 /**
  * Class AttributeBuilder
+ * .
  */
 class AttributeBuilder implements ElementInterface
 {

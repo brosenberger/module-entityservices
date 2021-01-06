@@ -1,7 +1,6 @@
 <?php
 /**
  * @author      Benjamin Rosenberger <rosenberger@e-conomix.at>
- * @package BroCode\EntityServices\Model
  * @copyright Copyright (c) 2020 E-CONOMIX GmbH (https://www.e-conomix.at)
  * @created 23.08.2020
  */
@@ -14,7 +13,7 @@ use BroCode\EntityServices\Model\Schema\UpdateTableElement;
 
 /**
  * Class SchemaBuilder
- * @package BroCode\EntityServices\Model
+ * .
  */
 class SchemaBuilder implements ElementInterface
 {

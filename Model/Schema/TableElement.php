@@ -1,7 +1,6 @@
 <?php
 /**
  * @author      Benjamin Rosenberger <rosenberger@e-conomix.at>
- * @package BroCode\EntityServices\Model\Schema
  * @copyright Copyright (c) 2020 E-CONOMIX GmbH (https://www.e-conomix.at)
  * @created 23.08.2020
  */
