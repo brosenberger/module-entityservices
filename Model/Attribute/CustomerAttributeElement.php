@@ -14,6 +14,9 @@ use Magento\Eav\Api\AttributeRepositoryInterface;
 
 /**
  * Class CustomerAttributeElement
+ *
+ * additional methods for customer specific attributes (like formhandling)
+ *
  * @package BroCode\EntityServices\Model\Attribute
  */
 class CustomerAttributeElement extends AttributeElement
@@ -43,14 +46,16 @@ class CustomerAttributeElement extends AttributeElement
         $this->attributeRepository = $attributeRepository;
     }
 
-    public function withDefaults() {
+    public function withDefaults()
+    {
         $this->asSystem(false)
             ->asUserDefined(true)
             ->asVisible(true)
             ->addToForm($this->getDefaultForms());
     }
 
-    protected function getDefaultForms() {
+    protected function getDefaultForms()
+    {
         return self::DEFAULT_FORMS;
     }
 
@@ -58,15 +63,18 @@ class CustomerAttributeElement extends AttributeElement
      * @param bool $system
      * @return $this
      */
-    public function asSystem($system) {
+    public function asSystem($system)
+    {
         return $this->withAttribute('system', $system == true ? 1 : 0);
     }
 
-    public function asUserDefined($userDefined) {
+    public function asUserDefined($userDefined)
+    {
         return $this->withAttribute('user_defined', $userDefined == true);
     }
 
-    public function addToForm($forms) {
+    public function addToForm($forms)
+    {
         if (is_array($forms)) {
             $this->forms = array_merge($this->forms, $forms);
         } else {

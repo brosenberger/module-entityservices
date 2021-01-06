@@ -10,7 +10,6 @@ namespace BroCode\EntityServices\Model;
 
 /**
  * Class SchemaBuilderFactory
- * @package BroCode\EntityServices\Model
  * @depecated use \BroCode\EntityServices\Model\ServiceFactory
  */
 class SchemaBuilderFactory
