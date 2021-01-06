@@ -14,5 +14,8 @@ namespace BroCode\EntityServices\Api;
  */
 interface ElementInterface
 {
+    /**
+     * @return ElementInterface
+     */
     public function build();
 }

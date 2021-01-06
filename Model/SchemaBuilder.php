@@ -37,9 +37,10 @@ class SchemaBuilder implements ElementInterface
      * @param string $comment
      * @return UpdateTableElement
      */
-    public function updateTable($tableName) {
+    public function updateTable($tableName)
+    {
         if (!$this->setup->tableExists($this->setup->getTable($tableName))) {
-            throw new \RuntimeException('Update table '. $this->setup->getTable($tableName) . ' does not exist!');
+            throw new \RuntimeException('Update table ' . $this->setup->getTable($tableName) . ' does not exist!');
         }
         return $this->withTable($tableName);
     }

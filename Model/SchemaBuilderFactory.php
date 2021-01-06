@@ -11,14 +11,17 @@ namespace BroCode\EntityServices\Model;
 /**
  * Class SchemaBuilderFactory
  * @package BroCode\EntityServices\Model
+ * @depecated use \BroCode\EntityServices\Model\ServiceFactory
  */
 class SchemaBuilderFactory
 {
     /**
      * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
      * @return SchemaBuilder
+     * @depecated use \BroCode\EntityServices\Model\ServiceFactory::createSchemaBuilder
      */
-    public function create(\Magento\Framework\Setup\SchemaSetupInterface $setup) {
+    public function create(\Magento\Framework\Setup\SchemaSetupInterface $setup)
+    {
         return new SchemaBuilder($setup);
     }
 }
