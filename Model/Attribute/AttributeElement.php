@@ -178,8 +178,10 @@ class AttributeElement implements ElementInterface
         );
     }
 
+    // @codingStandardsIgnoreStart empty function
     protected function additionalActions()
     {
         // nothing to do in here, only subs if they want to
     }
+    // @codingStandardsIgnoreEnd
 }
