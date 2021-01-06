@@ -10,6 +10,7 @@ namespace BroCode\EntityServices\Model;
 
 /**
  * Class SchemaBuilderFactory .
+ * Please use other class, this name is misleading as also eav attributes can be added/changed
  * @depecated use \BroCode\EntityServices\Model\EntityServiceFactory
  */
 class SchemaBuilderFactory

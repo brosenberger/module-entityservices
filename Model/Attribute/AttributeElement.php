@@ -12,6 +12,7 @@ use BroCode\EntityServices\Api\ElementInterface;
 
 /**
  * Class AttributeElement
+ * Basic class for configuration of an attribute
  */
 class AttributeElement implements ElementInterface
 {

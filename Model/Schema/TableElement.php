@@ -11,7 +11,8 @@ namespace BroCode\EntityServices\Model\Schema;
 use BroCode\EntityServices\Model\SchemaBuilder;
 
 /**
- * Class TableElement .
+ * Class TableElement
+ * .
  */
 class TableElement extends AbstractElement
 {
@@ -72,7 +73,7 @@ class TableElement extends AbstractElement
             $comment
         )->withSize(255);
     }
-    public function withIntColumn($columnName, $comment='')
+    public function withIntColumn($columnName, $comment = '')
     {
         return $this->withColumn(
             $columnName,
@@ -88,7 +89,7 @@ class TableElement extends AbstractElement
             $comment
         );
     }
-    public function withDecimalColumn($columnName, $comment ='')
+    public function withDecimalColumn($columnName, $comment = '')
     {
         return $this->withColumn(
             $columnName,
@@ -96,7 +97,7 @@ class TableElement extends AbstractElement
             $comment
         )->withSize('12,4');
     }
-    public function withDateTimeColumn($columnName, $comment='')
+    public function withDateTimeColumn($columnName, $comment = '')
     {
         return $this->withColumn(
             $columnName,

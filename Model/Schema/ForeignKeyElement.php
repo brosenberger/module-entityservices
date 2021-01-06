@@ -9,7 +9,8 @@
 namespace BroCode\EntityServices\Model\Schema;
 
 /**
- * Class ForeignKeyElement .
+ * Class ForeignKeyElement
+ * .
  */
 class ForeignKeyElement extends AbstractElement
 {

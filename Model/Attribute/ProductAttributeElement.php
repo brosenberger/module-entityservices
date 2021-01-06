@@ -12,6 +12,7 @@ use BroCode\EntityServices\Api\ElementInterface;
 
 /**
  * Class ProductAttributeElement
+ * Specialized methods for product attributes (product type specification,...)
  */
 class ProductAttributeElement extends AttributeElement
 {
