@@ -119,27 +119,33 @@ class AttributeElement implements ElementInterface
         return $this->withAttribute('type', $type);
     }
 
-    public function withTypeStatic() {
+    public function withTypeStatic()
+    {
         return $this->withType('static');
     }
 
-    public function withTypeVarchar() {
+    public function withTypeVarchar()
+    {
         return $this->withType('varchar');
     }
 
-    public function withTypeInt() {
+    public function withTypeInt()
+    {
         return $this->withType('int');
     }
 
-    public function withTypeText() {
+    public function withTypeText()
+    {
         return $this->withType('text');
     }
 
-    public function withTypeDatetime() {
+    public function withTypeDatetime()
+    {
         return $this->withType('datetime');
     }
 
-    public function withTypeDecimal() {
+    public function withTypeDecimal()
+    {
         return $this->withType('decimal');
     }
 
@@ -215,7 +221,8 @@ class AttributeElement implements ElementInterface
         return $this->withScope(\Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL);
     }
 
-    public function withSortOrder($sortOrder) {
+    public function withSortOrder($sortOrder)
+    {
         return $this->withAttribute('sort_order', $sortOrder);
     }
 
