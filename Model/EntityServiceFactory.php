@@ -24,6 +24,10 @@ class EntityServiceFactory
      * @var AttributeRepositoryInterface
      */
     private $attributeRepository;
+    /**
+     * @var \Magento\Eav\Setup\EavSetupFactory
+     */
+    private $eavSetupFactory;
 
     /**
      * EntityServiceFactory constructor.
@@ -32,10 +36,12 @@ class EntityServiceFactory
      */
     public function __construct(
         Attribute $attributeResourceModel,
-        AttributeRepositoryInterface $attributeRepository
+        AttributeRepositoryInterface $attributeRepository,
+        \Magento\Eav\Setup\EavSetupFactory $eavSetupFactory
     ) {
         $this->attributeResourceModel = $attributeResourceModel;
         $this->attributeRepository = $attributeRepository;
+        $this->eavSetupFactory = $eavSetupFactory;
     }
 
     /**
@@ -51,8 +57,9 @@ class EntityServiceFactory
      * @param \Magento\Eav\Setup\EavSetup $eavSetup
      * @return AttributeBuilder
      */
-    public function createProductAttributeBuilder(\Magento\Eav\Setup\EavSetup $eavSetup)
+    public function createProductAttributeBuilder(\Magento\Framework\Setup\ModuleDataSetupInterface $setup)
     {
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
         return new AttributeBuilder($eavSetup, $this->attributeResourceModel, $this->attributeRepository);
     }
 }

@@ -66,6 +66,50 @@ class AttributeElement implements ElementInterface
         return $this;
     }
 
+    public function withFrontendInput($inputType)
+    {
+        return $this->withAttribute('input', $inputType);
+    }
+
+    public function withInputText()
+    {
+        return $this->withFrontendInput('text');
+    }
+    public function withInputTextarea()
+    {
+        return $this->withFrontendInput('textarea');
+    }
+    public function withInputSelect()
+    {
+        return $this->withFrontendInput('select');
+    }
+    public function withInputMultiselect()
+    {
+        return $this->withFrontendInput('multiselect');
+    }
+    public function withInputDate()
+    {
+        return $this->withFrontendInput('date');
+    }
+
+    public function withFrontendClass($frontendClass)
+    {
+        return $this->withAttribute('class', $frontendClass);
+    }
+
+    public function withFrontendModel($frontendModel)
+    {
+        return $this->withAttribute('frontend', $frontendModel);
+    }
+    public function withBackendModel($backendModel)
+    {
+        return $this->withAttribute('backend', $backendModel);
+    }
+    public function withSource($sourceModel)
+    {
+        return $this->withAttribute('source', $sourceModel);
+    }
+
     /**
      * @param string $type
      * @return $this
@@ -73,6 +117,30 @@ class AttributeElement implements ElementInterface
     public function withType($type)
     {
         return $this->withAttribute('type', $type);
+    }
+
+    public function withTypeStatic() {
+        return $this->withType('static');
+    }
+
+    public function withTypeVarchar() {
+        return $this->withType('varchar');
+    }
+
+    public function withTypeInt() {
+        return $this->withType('int');
+    }
+
+    public function withTypeText() {
+        return $this->withType('text');
+    }
+
+    public function withTypeDatetime() {
+        return $this->withType('datetime');
+    }
+
+    public function withTypeDecimal() {
+        return $this->withType('decimal');
     }
 
     /**
@@ -108,6 +176,11 @@ class AttributeElement implements ElementInterface
         return $this->withAttribute('required', $required == true);
     }
 
+    public function asUserDefined($userDefined)
+    {
+        return $this->withAttribute('is_user_defined', $userDefined == true);
+    }
+
     /**
      * @param bool $visible
      * @return $this
@@ -140,6 +213,10 @@ class AttributeElement implements ElementInterface
     public function withGlobalScope()
     {
         return $this->withScope(\Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL);
+    }
+
+    public function withSortOrder($sortOrder) {
+        return $this->withAttribute('sort_order', $sortOrder);
     }
 
     public function build()
