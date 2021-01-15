@@ -1,7 +1,7 @@
 {
     "name": "brocode/module-entityservices",
     "type": "magento2-module",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "description": "Entity services for magento2",
     "keywords":[ "composer-installer", "magento"],
     "authors": [

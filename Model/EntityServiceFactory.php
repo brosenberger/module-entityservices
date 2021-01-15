@@ -76,6 +76,6 @@ class EntityServiceFactory
      */
     public function versionLessThan($context, $versionToBe)
     {
-        return version_compare($context->getVersion(), '0.0.2') < 0;
+        return version_compare($context->getVersion(), $versionToBe) < 0;
     }
 }
