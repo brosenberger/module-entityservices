@@ -184,7 +184,7 @@ class AttributeElement implements ElementInterface
 
     public function asUserDefined($userDefined)
     {
-        return $this->withAttribute('is_user_defined', $userDefined == true);
+        return $this->withAttribute('user_defined', $userDefined == true);
     }
 
     /**

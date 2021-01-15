@@ -56,10 +56,26 @@ class EntityServiceFactory
     /**
      * @param \Magento\Eav\Setup\EavSetup $eavSetup
      * @return AttributeBuilder
+     * @depecated use method createAttributeBuilder
      */
     public function createProductAttributeBuilder(\Magento\Framework\Setup\ModuleDataSetupInterface $setup)
     {
+        return $this->createAttributeBuilder($setup);
+    }
+
+    public function createAttributeBuilder(\Magento\Framework\Setup\ModuleDataSetupInterface $setup)
+    {
         $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
         return new AttributeBuilder($eavSetup, $this->attributeResourceModel, $this->attributeRepository);
+    }
+
+    /**
+     * @param \Magento\Framework\Setup\ModuleContextInterface $context
+     * @param string $versionToBe
+     * @return bool
+     */
+    public function versionLessThan($context, $versionToBe)
+    {
+        return version_compare($context->getVersion(), '0.0.2') < 0;
     }
 }

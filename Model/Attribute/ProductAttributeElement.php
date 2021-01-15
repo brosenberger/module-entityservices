@@ -65,4 +65,30 @@ class ProductAttributeElement extends AttributeElement
     {
         return $this->withApplyTo(self::ALLPRODUCTTYPES);
     }
+
+    public function inGroup($groupName)
+    {
+        return $this->withAttribute('group', $groupName);
+    }
+
+    public function inGroupGeneral()
+    {
+        return $this->inGroup('General');
+    }
+    public function inGroupPrices()
+    {
+        return $this->inGroup('Prices');
+    }
+    public function inGroupMetaInformation()
+    {
+        return $this->inGroup('Meta Information');
+    }
+    public function inGroupImages()
+    {
+        return $this->inGroup('Images');
+    }
+    public function inGroupDesign()
+    {
+        return $this->inGroup('Design');
+    }
 }
