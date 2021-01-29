@@ -37,9 +37,16 @@ class ProductAttributeElement extends AttributeElement
         return $this->withAttribute('comparable', $comparable == true);
     }
 
+    /**
+     * @depecated use correctly spelled method asVisibleOnFront
+     */
     public function asVisibleOnFron($visible)
     {
-        return $this->withAttribute('visible_on_fron', $visible == true);
+        return $this->asVisibleOnFront($visible);
+    }
+    public function asVisibleOnFront($visible)
+    {
+        return $this->withAttribute('visible_on_front', $visible == true);
     }
 
     public function asUsedInProductListing($usedInProductListing)
@@ -64,11 +71,6 @@ class ProductAttributeElement extends AttributeElement
     public function withApplyToAll()
     {
         return $this->withApplyTo(self::ALLPRODUCTTYPES);
-    }
-
-    public function inGroup($groupName)
-    {
-        return $this->withAttribute('group', $groupName);
     }
 
     public function inGroupGeneral()

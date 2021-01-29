@@ -60,17 +60,33 @@ class AttributeElement implements ElementInterface
         $this->entityTypeId = $entityTypeId;
     }
 
+    public function getAttribute($attribute, $defaultValue = null)
+    {
+        if (isset($this->attr[$attribute])) {
+            return $this->attr[$attribute];
+        }
+        return $defaultValue;
+    }
+
     public function withAttribute($attribute, $value)
     {
         $this->attr[$attribute] = $value;
         return $this;
     }
 
+
+    public function inGroup($groupName)
+    {
+        return $this->withAttribute('group', $groupName);
+    }
     public function withFrontendInput($inputType)
     {
         return $this->withAttribute('input', $inputType);
     }
-
+    public function withInputBoolean()
+    {
+        return $this->withFrontendInput('boolean');
+    }
     public function withInputText()
     {
         return $this->withFrontendInput('text');
@@ -234,11 +250,23 @@ class AttributeElement implements ElementInterface
             $this->code,
             $this->attr
         );
+
+        $setId = $this->setId ?? $this->eavSetup->getDefaultAttributeSetId($this->entityTypeId);
+        $groupId = $this->eavSetup->getAttributeGroup(
+            $this->entityTypeId,
+            $setId,
+            $this->getAttribute(
+                'group',
+                $this->groupId ?? $this->eavSetup->getDefaultAttributeGroupId($this->entityTypeId)
+            ),
+            'attribute_group_id'
+        );
+
         $this->addToAttributeSet(
             $this->entityTypeId,
             $this->code,
-            $this->setId ?? $this->eavSetup->getDefaultAttributeSetId($this->entityTypeId),
-            $this->groupId ?? $this->eavSetup->getDefaultAttributeGroupId($this->entityTypeId),
+            $setId,
+            $groupId,
             $this->sortOrder
         );
         $this->additionalActions();
