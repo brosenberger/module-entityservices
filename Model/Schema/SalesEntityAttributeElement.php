@@ -62,9 +62,29 @@ class SalesEntityAttributeElement implements ElementInterface
         $this->getQuoteSetup()->addAttribute('quote', $attributeCode, $columnOptions);
     }
 
+    public function withQuoteItemAttribute($attributeCode, array $columnOptions)
+    {
+        $this->getQuoteSetup()->addAttribute('quote_item', $attributeCode, $columnOptions);
+    }
+
+    public function withQuoteAddressAttribute($attributeCode, array $columnOptions)
+    {
+        $this->getQuoteSetup()->addAttribute('quote_address', $attributeCode, $columnOptions);
+    }
+
+    public function withQuoteAddressItemAttribute($attributeCode, array $columnOptions)
+    {
+        $this->getQuoteSetup()->addAttribute('quote_address_item', $attributeCode, $columnOptions);
+    }
+
     public function withOrderAttribute($attributeCode, array $columnOptions)
     {
         return $this->withSalesEntityAttribute('order', $attributeCode, $columnOptions);
+    }
+
+    public function withOrderItemAttribute($attributeCode, array $columnOptions)
+    {
+        return $this->withSalesEntityAttribute('order_item', $attributeCode, $columnOptions);
     }
 
     public function withInvoiceAttribute($attributeCode, array $columnOptions)
