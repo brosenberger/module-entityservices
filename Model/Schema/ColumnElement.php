@@ -46,6 +46,12 @@ class ColumnElement extends AbstractElement
         return $this;
     }
 
+    public function asAutoIncrement($autoIncrement = true)
+    {
+        $this->columnOptions['auto_increment'] = $autoIncrement;
+        return $this;
+    }
+
     public function asIdentiy($identity = true)
     {
         $this->columnOptions['identity'] = $identity;
