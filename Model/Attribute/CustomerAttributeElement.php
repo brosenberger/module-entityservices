@@ -80,13 +80,19 @@ class CustomerAttributeElement extends AttributeElement
         return $this;
     }
 
+    public function saveAddToForms($forms)
+    {
+        $attribute = $this->attributeRepository->get($this->entityTypeId, $this->code);
+        $attribute->setData('used_in_forms', $forms);
+        $this->attributeResourceModel->save($attribute);
+        return $this;
+    }
+
     protected function additionalActions()
     {
         parent::additionalActions();
         if (count($this->forms)>0) {
-            $attribute = $this->attributeRepository->get($this->entityTypeId, $this->code);
-            $attribute->setData('used_in_forms', $this->forms);
-            $this->attributeResourceModel->save($attribute);
+            $this->saveAddToForms($this->forms);
         }
     }
 }
