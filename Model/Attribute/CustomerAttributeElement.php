@@ -77,6 +77,7 @@ class CustomerAttributeElement extends AttributeElement
         } else {
             $this->forms[] = $forms;
         }
+        return $this;
     }
 
     protected function additionalActions()
