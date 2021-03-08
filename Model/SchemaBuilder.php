@@ -115,6 +115,18 @@ class SchemaBuilder implements ElementInterface
         return $table->build();
     }
 
+    /**
+     * @param $tableName
+     * @return $this
+     */
+    public function dropTable($tableName)
+    {
+        $this->setup->getConnection()->dropTable(
+            $this->setup->getConnection()->getTableName($tableName)
+        );
+        return $this;
+    }
+
     public function build()
     {
         // nothing to do
