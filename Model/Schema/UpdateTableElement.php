@@ -17,14 +17,56 @@ class UpdateTableElement extends TableElement
     protected $dropFk = [];
     protected $dropIndex = [];
 
+    /**
+     * @param string $fk
+     * @return $this
+     */
     public function dropForeignKey($fk)
     {
         $this->dropFk[] = $fk;
         return $this;
     }
+
+    /**
+     * @param string $index
+     * @return $this
+     */
     public function dropIndex($index)
     {
         $this->dropIndex[] = $index;
+        return $this;
+    }
+
+    /**
+     * @param string $from
+     * @param string $to
+     * @param array|null $definition
+     * @return $this
+     */
+    public function renameColumn($from, $to, $definition = null) {
+        $tableName = $this->setup->getConnection()->getTableName($this->tableName);
+        if ($definition == null) {
+            $ddlDefinition = $this->setup->getConnection()->describeTable(
+                $tableName
+            )[$from];
+            $definition = [
+                'type' => $ddlDefinition['DATA_TYPE'],
+                'default' => $ddlDefinition['DEFAULT'],
+                'nullable' => $ddlDefinition['NULLABLE'],
+                'length' => $ddlDefinition['LENGTH'],
+                'primary' => $ddlDefinition['PRIMARY'],
+                'identity' => $ddlDefinition['IDENTITY'],
+                'unsigned' => $ddlDefinition['UNSIGNED'],
+                'precision' => $ddlDefinition['PRECISION'],
+                'scale' => $ddlDefinition['SCALE'],
+            ];
+        }
+        $this->setup->getConnection()->changeColumn(
+            $tableName,
+            $from,
+            $to,
+            $definition
+        );
         return $this;
     }
 
