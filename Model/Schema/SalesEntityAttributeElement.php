@@ -82,6 +82,11 @@ class SalesEntityAttributeElement implements ElementInterface
         return $this->withSalesEntityAttribute('order', $attributeCode, $columnOptions);
     }
 
+    public function withOrderAddressAttribute($attributeCode, array $columnOptions)
+    {
+        return $this->withSalesEntityAttribute('order_address', $attributeCode, $columnOptions);
+    }
+
     public function withOrderItemAttribute($attributeCode, array $columnOptions)
     {
         return $this->withSalesEntityAttribute('order_item', $attributeCode, $columnOptions);
