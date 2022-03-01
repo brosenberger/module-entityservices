@@ -88,6 +88,26 @@ class CustomerAttributeElement extends AttributeElement
         return $this;
     }
 
+    public function asUsedInGrid($usedInGrid = true)
+    {
+        return $this->withAttribute('is_used_in_grid', $usedInGrid);
+    }
+
+    public function asVisibleInGrid($visibleInGrid = true)
+    {
+        return $this->withAttribute('is_visible_in_grid', $visibleInGrid);
+    }
+
+    public function asFilterableInGrid($filterableInGrid = true)
+    {
+        return $this->withAttribute('is_filterable_in_grid', $filterableInGrid);
+    }
+
+    public function asSearchableInGrid($searchableInGrid = true)
+    {
+        return $this->withAttribute('is_searchable_in_grid', $searchableInGrid);
+    }
+
     protected function additionalActions()
     {
         parent::additionalActions();
