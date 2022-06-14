@@ -54,6 +54,11 @@ class ProductAttributeElement extends AttributeElement
         return $this->withAttribute('used_in_prodict_listing', $usedInProductListing == true);
     }
 
+    public function asUsedForPromoRules($usedForPromoRules)
+    {
+        return $this->withAttribute('used_for_promo_rules', $usedForPromoRules == true);
+    }
+
     public function asUnique($unique)
     {
         return $this->withAttribute('unique', $unique == true);
