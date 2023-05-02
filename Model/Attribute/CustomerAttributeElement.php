@@ -45,7 +45,7 @@ class CustomerAttributeElement extends AttributeElement
 
     public function withDefaults()
     {
-        $this->asSystem(false)
+        return $this->asSystem(false)
             ->asUserDefined(true)
             ->asVisible(true)
             ->addToForm($this->getDefaultForms());
