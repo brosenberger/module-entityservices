@@ -51,7 +51,7 @@ class ProductAttributeElement extends AttributeElement
 
     public function asUsedInProductListing($usedInProductListing)
     {
-        return $this->withAttribute('used_in_prodict_listing', $usedInProductListing == true);
+        return $this->withAttribute('used_in_product_listing', $usedInProductListing == true);
     }
 
     public function asUsedForPromoRules($usedForPromoRules)
