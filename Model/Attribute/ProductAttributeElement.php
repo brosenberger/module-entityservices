@@ -78,6 +78,24 @@ class ProductAttributeElement extends AttributeElement
         return $this->withApplyTo(self::ALLPRODUCTTYPES);
     }
 
+    public function withInputMediaImage()
+    {
+        return $this->withFrontendInput('media_image');
+    }
+
+    public function withImageFrontendModel()
+    {
+        return $this->withFrontendModel('Magento\Catalog\Model\Product\Attribute\Frontend\Image');
+    }
+
+    /**
+     * Used for a product image role
+     * @return ProductAttributeElement
+     */
+    public function asMediaImage() {
+        return $this->withTypeVarchar()->withInputMediaImage()->withImageFrontendModel();
+    }
+
     public function inGroupGeneral()
     {
         return $this->inGroup('General');
